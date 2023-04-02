@@ -68,8 +68,10 @@ async def on_message(message):
     if message.author == bot.user:
         return
     
-    user = await bot.fetch_user(MY_DISCORD_ID)
-    await user.send(f"Received message from: {message.author} \n Message: {message.content}")    
+    if isinstance(message.channel, discord.DMChannel):
+        user = await bot.fetch_user(MY_DISCORD_ID)
+        await user.send(f"Received message from: {message.author} \n Message: {message.content}")
+
 
 
 # msg me if bot gets msg
