@@ -1,7 +1,7 @@
-discord.py
-berserk
-openai
-pytube
-ffmpy
-riotwatcher
-gunicorn
+berserk==0.10.0
+discord.py==2.2.2
+ffmpy==0.3.0
+openai==0.27.2
+pytube==12.1.2
+requests==2.28.2
+riotwatcher==3.2.4
