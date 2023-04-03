@@ -39,10 +39,8 @@ brsrk_client = berserk.Client(brsrk_session)
 
 # ^ - api keys and auth.variables
 
-intents = discord.Intents.default()
-intents.messages = True
-intents.presences = True
 
+intents = discord.Intents.all()
 
 bot = commands.Bot(command_prefix="!", intents=intents)
 
@@ -55,28 +53,22 @@ restart_sequence = "\nHuman:"
 
 # ^ - event on bot startup
 
-@bot.event  # EVENT
-async def on_ready():  # ON LOGIN
+@bot.event  
+async def on_ready():  
     print(
         "We have logged in as {0.user}".format(bot)
-    )  # PRINTS OUT A MESSAGE IN THE TERMINAL
-
-
-
-@bot.event
-async def on_message(message):    
-    if message.author == bot.user:
-        return
-    
-    if isinstance(message.channel, discord.DMChannel):
-        user = await bot.fetch_user(MY_DISCORD_ID)
-        await user.send(f"Received message from: {message.author} \n Message: {message.content}")
-
+    )  
 
 
 # msg me if bot gets msg
 
 
+@bot.event
+async def on_message(message):
+    if isinstance(message.channel, discord.DMChannel) and message.author != bot.user:
+        user = await bot.fetch_user(MY_DISCORD_ID)
+        await user.send(f"Received message from: {message.author}\nMessage: {message.content}")
+    await bot.process_commands(message)
 
 
 
