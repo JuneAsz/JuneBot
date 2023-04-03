@@ -19,20 +19,24 @@ from riotwatcher import *
 # ^ - libraries
 
 
-RIOT_API_KEY = "RGAPI-c7613589-8874-450d-bd3d-2693736514f3"
-OPENAI_KEY = "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"
-lichess_api_key = "lip_93MXLSRM3pjbRZPsuJv3"
-Discord_api_key = (
-    "OTg2NzcxOTQ2Mjg3MDA1NzE2.Ghh-BL.u2UvpEzQmm3N0XQv7wfaJPWnyU0WbUbk5WwmzY"
-)
+RIOT_API_KEY = os.getenv("RIOT_API_KEY")
+OPENAI_KEY = os.getenv('OPENAI_KEY')
+lichess_api_key = os.getenv('lichess_api_key')
+Discord_api_key = os.getenv('Discord_api_key')
 
 lol_watcher = LolWatcher(RIOT_API_KEY)
 
-MY_DISCORD_ID = "344435071610126336"
+MY_DISCORD_ID = os.getenv("Discord_ID")
+
+RIOT_API_KEY = os.getenv("RIOT_API_KEY")
+
+
+
 openai.api_key = OPENAI_KEY
 
 brsrk_session = berserk.TokenSession(lichess_api_key)
 brsrk_client = berserk.Client(brsrk_session)
+
 
 
 # bot = discord.Client() # instance of a "discord.Client()" class
